@@ -12,11 +12,10 @@ import classNames from "classnames";
 // Disabled uses the disabled prop to apply the disabled attribute to the button element
 
 export default function Button(props) {
-  let className = classNames(
-    "button",
-    { "button--confirm": props.confirm },
-    { "button--danger": props.danger }
-  );
+  let className = classNames("button", {
+    "button--confirm": props.confirm,
+    "button--danger": props.danger,
+  });
 
   return (
     <button
