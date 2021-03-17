@@ -14,6 +14,7 @@ import index from "components/Appointment/index";
 import Appointment from "components/Appointment/index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
 
 //Used as dummy data for the DayList component
 const days = [
@@ -145,4 +146,21 @@ storiesOf("Appointment", module)
   .add("Appointment", () => <Appointment />)
   .add("Appointment with a time prop", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
-  .add("Empty", () => <Empty onAdd={action("onAdd")} />);
+  .add("Empty", () => <Empty onAdd={action("onAdd")} />)
+  .add("Show unselected", () => (
+    <Show student="Lydia Miller-Jones" interviewer={interviewer} />
+  ))
+  .add("Show selected & click edit", () => (
+    <Show
+      student="Lydia Miller-Jones"
+      interviewer={interviewer}
+      onEdit={action("onEdit")}
+    />
+  ))
+  .add("Show selected & click delete", () => (
+    <Show
+      student="Lydia Miller-Jones"
+      interviewer={interviewer}
+      onDelete={action("onDelete")}
+    />
+  ));
