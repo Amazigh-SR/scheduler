@@ -14,7 +14,7 @@ import Appointment from "components/Appointment/index";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
-import Delete from "components/Appointment/Delete";
+import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 
@@ -166,8 +166,14 @@ storiesOf("Appointment", module)
       onDelete={action("onDelete")}
     />
   ))
-  .add("Confirm Delete", () => (
-    <Delete message="Delete the appointment?" onConfirm={action("onConfirm")} />
+  .add("Confirm delete", () => (
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+    />
+  ))
+  .add("Confirm cancel", () => (
+    <Confirm message="Delete the appointment?" onCancel={action("onCancel")} />
   ))
   .add("Status", () => <Status message="Deleting" />)
   .add("Error", () => (
