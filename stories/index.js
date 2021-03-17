@@ -16,6 +16,7 @@ import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Delete from "components/Appointment/Delete";
 import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
 
 //Used as dummy data for the DayList component
 const days = [
@@ -168,4 +169,7 @@ storiesOf("Appointment", module)
   .add("Confirm Delete", () => (
     <Delete message="Delete the appointment?" onConfirm={action("onConfirm")} />
   ))
-  .add("Status", () => <Status message="Deleting" />);
+  .add("Status", () => <Status message="Deleting" />)
+  .add("Error", () => (
+    <Error message="Could not delete appointment" onClose={action("onClose")} />
+  ));
