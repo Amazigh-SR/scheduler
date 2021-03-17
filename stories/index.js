@@ -12,6 +12,8 @@ import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import index from "components/Appointment/index";
 import Appointment from "components/Appointment/index";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
 
 //Used as dummy data for the DayList component
 const days = [
@@ -134,11 +136,13 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-// --------- Appointment - Index ----------//
+// --------- Appointment Stories ----------//
 
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }],
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment with a time prop", () => <Appointment time="12pm" />);
+  .add("Appointment with a time prop", () => <Appointment time="12pm" />)
+  .add("Header", () => <Header time="12pm" />)
+  .add("Empty", () => <Empty onAdd={action("onAdd")} />);
