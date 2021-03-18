@@ -52,7 +52,7 @@ const getAppointmentsForDay = function (state, day) {
   return appointmentsForDay;
 };
 
-console.log(getAppointmentsForDay(state, "Monday"));
+// console.log(getAppointmentsForDay(state, "Monday"));
 
 exports.getAppointmentsForDay = getAppointmentsForDay;
 
@@ -70,6 +70,6 @@ const getInterview = function (state, interviewObj) {
   return { student, interviewer: interviewerObj };
 };
 
-console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 }));
+// console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 }));
 
 exports.getInterview = getInterview;
