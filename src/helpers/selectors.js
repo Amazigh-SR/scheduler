@@ -26,6 +26,19 @@ const state = {
       interview: { student: "Chad Takahashi", interviewer: 2 },
     },
   },
+
+  interviewers: {
+    1: {
+      id: 1,
+      name: "Sylvia Palmer",
+      avatar: "https://i.imgur.com/LpaY82x.png",
+    },
+    2: {
+      id: 2,
+      name: "Tori Malcolm",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png",
+    },
+  },
 };
 
 const getAppointmentsForDay = function (state, day) {
@@ -39,6 +52,24 @@ const getAppointmentsForDay = function (state, day) {
   return appointmentsForDay;
 };
 
-// module.exports = getAppointmentsForDay;
-export default getAppointmentsForDay;
-// console.log(getAppointmentsForDay(state, ""));
+console.log(getAppointmentsForDay(state, "Monday"));
+
+exports.getAppointmentsForDay = getAppointmentsForDay;
+
+// -------------- getInterview function ------------------ //
+
+const getInterview = function (state, interviewObj) {
+  if (!interviewObj) {
+    return null;
+  }
+
+  const interviewerId = interviewObj.interviewer;
+  const interviewerObj = state.interviewers[interviewerId];
+  const student = interviewObj.student;
+
+  return { student, interviewer: interviewerObj };
+};
+
+console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 }));
+
+exports.getInterview = getInterview;
