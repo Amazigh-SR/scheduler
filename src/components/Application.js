@@ -6,10 +6,6 @@ import Appointment from "components/Appointment";
 import getAppointmentsForDay from "helpers/selectors";
 
 export default function Application(props) {
-  // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState([]);
-  // const [appointments, setAppointments] = useState({}); // ! keeping for reference purposes for me  for later
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
