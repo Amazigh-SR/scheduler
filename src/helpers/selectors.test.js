@@ -1,5 +1,5 @@
-// import { getAppointmentsForDay } from "helpers/selectors";
-const getAppointmentsForDay = require("./selectors");
+import getAppointmentsForDay from "helpers/selectors";
+// const getAppointmentsForDay = require("./selectors");
 
 const state = {
   days: [

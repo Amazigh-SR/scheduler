@@ -39,6 +39,6 @@ const getAppointmentsForDay = function (state, day) {
   return appointmentsForDay;
 };
 
-module.exports = getAppointmentsForDay;
-// import default getAppointmentsForDay
+// module.exports = getAppointmentsForDay;
+export default getAppointmentsForDay;
 // console.log(getAppointmentsForDay(state, ""));
