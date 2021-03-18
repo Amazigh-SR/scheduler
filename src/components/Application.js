@@ -3,13 +3,14 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import getAppointmentsForDay from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {},
   });
 
   const setDay = (day) => setState({ ...state, day });
@@ -17,24 +18,30 @@ export default function Application(props) {
   //   setState((prev) => ({ ...prev, days }));
   // }; // ! keeping for reference purposes for me for later
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-
+  const dailyAppointments = getAppointmentsForDay(state, state.day); //! Should I use day here instead of state.day?
   const appointmentsRender = dailyAppointments.map((appointment) => {
-    return <Appointment key={appointment.id} {...appointment} />;
+    const interview = getInterview(state, appointment.interview);
+    const newObj = { ...appointment, interview };
+
+    return <Appointment key={appointment.id} {...newObj} />;
   });
 
   useEffect(() => {
     const daysPromise = axios.get("/api/days");
     const appointmentsPromise = axios.get("/api/appointments");
+    const interviewersPromise = axios.get("/api/interviewers");
 
-    Promise.all([daysPromise, appointmentsPromise]).then((response) => {
-      console.log(response);
-      setState((prev) => ({
-        ...prev,
-        days: response[0].data,
-        appointments: response[1].data,
-      }));
-    });
+    Promise.all([daysPromise, appointmentsPromise, interviewersPromise]).then(
+      (response) => {
+        console.log(response);
+        setState((prev) => ({
+          ...prev,
+          days: response[0].data,
+          appointments: response[1].data,
+          interviewers: response[2].data,
+        }));
+      }
+    );
   }, []);
 
   return (
