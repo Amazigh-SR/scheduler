@@ -10,6 +10,7 @@ import {
 } from "helpers/selectors";
 
 export default function Application(props) {
+  //Information related to the state of our application
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -18,18 +19,8 @@ export default function Application(props) {
   });
 
   const setDay = (day) => setState({ ...state, day });
-  // const setDays = (days) => {
-  //   setState((prev) => ({ ...prev, days }));
-  // }; // ! keeping for reference purposes for me for later
-  const interviewersForDay = getInterviewersForDay(state, state.day);
-  const dailyAppointments = getAppointmentsForDay(state, state.day); //! Should I use day here instead of state.day?
-  const appointmentsRender = dailyAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-    const newObj = { ...appointment, interview, interviewersForDay };
 
-    return <Appointment key={appointment.id} {...newObj} />; // ? why can I not add a property to {...newObj, interviewersForDay}
-  });
-
+  // API calls to fetch required data
   useEffect(() => {
     const daysPromise = axios.get("/api/days");
     const appointmentsPromise = axios.get("/api/appointments");
@@ -47,6 +38,61 @@ export default function Application(props) {
       }
     );
   }, []);
+
+  // Functions responsible for transforming/rearranging data
+
+  //bookInterview Function
+  const bookInterview = function (id, interview) {
+    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios
+      .put(`api/appointments/${id}`, {
+        interview,
+      })
+      .then(() => {
+        setState({ ...state, appointments });
+      });
+  };
+
+  //cancelInterview Function
+  const cancelInterview = function (id) {
+    console.log(id);
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    return axios.delete(`api/appointments/${id}`).then(() => {
+      setState({ ...state, appointments });
+    });
+  };
+
+  const interviewersForDay = getInterviewersForDay(state, state.day);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const appointmentsRender = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    const newObj = { ...appointment, interview, interviewersForDay }; // ! There might be an issue here in the future with interviewersForDay
+
+    return (
+      <Appointment
+        key={appointment.id}
+        {...newObj}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
+    );
+  });
 
   return (
     <main className="layout">
