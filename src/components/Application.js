@@ -3,7 +3,11 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -17,13 +21,13 @@ export default function Application(props) {
   // const setDays = (days) => {
   //   setState((prev) => ({ ...prev, days }));
   // }; // ! keeping for reference purposes for me for later
-
+  const interviewersForDay = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day); //! Should I use day here instead of state.day?
   const appointmentsRender = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    const newObj = { ...appointment, interview };
+    const newObj = { ...appointment, interview, interviewersForDay };
 
-    return <Appointment key={appointment.id} {...newObj} />;
+    return <Appointment key={appointment.id} {...newObj} />; // ? why can I not add a property to {...newObj, interviewersForDay}
   });
 
   useEffect(() => {
