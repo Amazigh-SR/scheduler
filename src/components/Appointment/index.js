@@ -5,6 +5,7 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
+import { getInterviewersForDay } from "../../helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -32,7 +33,7 @@ const Appointment = function (props) {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form
-          interviewers={[]} //Empty array for the time being
+          interviewers={props.getInterviewersForDay}
           onSave={() => transition(SAVE)}
           onCancel={() => back()}
         />
