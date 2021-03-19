@@ -4,11 +4,13 @@ const state = {
       id: 1,
       name: "Monday",
       appointments: [1, 2, 3],
+      interviewers: [2],
     },
     {
       id: 2,
       name: "Tuesday",
       appointments: [4, 5],
+      interviewers: [1, 2],
     },
   ],
   appointments: {
@@ -73,3 +75,17 @@ const getInterview = function (state, interviewObj) {
 // console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 }));
 
 exports.getInterview = getInterview;
+
+//-------------- getInterviewersForDay function ----------------//
+
+const getInterviewersForDay = function (state, day) {
+  const appointmentsForDay = state.days.find((dayObj) => day === dayObj.name)
+    ? state.days
+        .find((dayObj) => day === dayObj.name)
+        .interviewers.map((element) => state.interviewers[element])
+    : [];
+
+  return appointmentsForDay;
+};
+
+exports.getInterviewersForDay = getInterviewersForDay;
