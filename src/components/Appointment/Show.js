@@ -21,7 +21,10 @@ const Show = function (props) {
             alt="Edit"
           />
           <img
-            onClick={props.onDelete}
+            onClick={() => {
+              // props.onDelete(props.id); // !Change to the confirmation mode/function
+              props.confirmationScreen();
+            }}
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
