@@ -6,14 +6,22 @@ import Empty from "components/Appointment/Empty";
 import useVisualMode from "hooks/useVisualMode";
 import Status from "components/Appointment/Status";
 import Form from "./Form";
+import Confirm from "./Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
-const CANCEL = "CANCEL";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
 
 const Appointment = function (props) {
+  //Initialize the useVisualMode hook
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
+  //Save & create appointment function
   const save = function (name, interviewer) {
     const interview = {
       student: name,
@@ -28,27 +36,52 @@ const Appointment = function (props) {
       .catch((error) => console.log(error));
   };
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
+  //delete appointment function
+  const deleteApp = function (id) {
+    transition(DELETING);
+    props.cancelInterview(id).then(() => {
+      transition(EMPTY);
+    });
+  };
+
+  //Confirmation Screen when attempting to delete an appointment
+  const confirmationScreen = function () {
+    transition(CONFIRM);
+  };
+
+  //Cancel the request to delete a given appointment
+  const cancelDeleteApt = function () {
+    transition(SHOW);
+  };
 
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {mode === SAVING && <Status />}
+      {mode === CONFIRM && (
+        <Confirm
+          message="Are you sure you would like to delete?"
+          onDelete={deleteApp}
+          id={props.id}
+          onCancel={cancelDeleteApt}
+        />
+      )}
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETING && <Status message="Deleting" />}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === CREATE && (
         <Form
           interviewers={props.getInterviewersForDay}
           onSave={save}
           onCancel={() => back()}
-          bookInterview={props.bookInterview}
+          // bookInterview={props.bookInterview}
         />
       )}
       {mode === SHOW && (
         <Show
+          id={props.id}
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          confirmationScreen={confirmationScreen}
         />
       )}
     </article>
