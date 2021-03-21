@@ -59,8 +59,7 @@ export default function Application(props) {
       })
       .then(() => {
         setState({ ...state, appointments });
-      })
-      .catch((error) => console.log(error));
+      });
   };
 
   //cancelInterview Function
@@ -81,6 +80,7 @@ export default function Application(props) {
 
   const interviewersForDay = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+
   const appointmentsRender = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const newObj = { ...appointment, interview, interviewersForDay }; // ! There might be an issue here in the future with interviewersForDay
