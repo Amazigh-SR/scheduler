@@ -3,8 +3,9 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 const Form = function (props) {
-  const [name, setName] = useState(props.name || "");
+  const [name, setName] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  console.log("current interviewer:", interviewer);
 
   const reset = function () {
     setName("");
@@ -41,6 +42,7 @@ const Form = function (props) {
           interviewers={props.interviewers}
           value={interviewer}
           onChange={setInterviewer}
+          interviewer={props.interviewer}
         />
       </section>
       <section className="appointment__card-right">
