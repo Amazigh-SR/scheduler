@@ -10,10 +10,12 @@ const useVisualMode = function (initial) {
 
   const transition = function (mode, replace = false) {
     if (replace) {
-      setHistory([...history.slice(0, -1), mode]);
+      // setHistory([...history.slice(0, -1), mode]);
+      setHistory((prev) => [...prev.slice(0, -1), mode]);
       setMode(mode);
     } else {
-      setHistory([...history, mode]);
+      // setHistory([...history, mode]);
+      setHistory((prev) => [...prev, mode]);
       setMode(mode);
     }
   };
