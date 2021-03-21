@@ -22,8 +22,8 @@ const InterviewerList = function (props) {
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        selected={props.value === interviewer.id}
-        setInterviewer={(event) => props.onChange(interviewer.id)} // ! This line is still a bit weird to me
+        selected={interviewer.id === props.value}
+        setInterviewer={(event) => props.onChange(interviewer.id)}
       />
     );
   });
