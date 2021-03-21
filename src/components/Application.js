@@ -59,7 +59,7 @@ export default function Application(props) {
       })
       .then(() => {
         setState({ ...state, appointments });
-      });
+      }); //! include .catch
   };
 
   //cancelInterview Function
@@ -75,7 +75,7 @@ export default function Application(props) {
     };
     return axios.delete(`api/appointments/${id}`).then(() => {
       setState({ ...state, appointments });
-    });
+    }); //! include .catch
   };
 
   const interviewersForDay = getInterviewersForDay(state, state.day);
