@@ -23,7 +23,7 @@ export default function Application(props) {
 
   const appointmentsRender = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    const newObj = { ...appointment, interview, interviewersForDay }; // ! There might be an issue here in the future with interviewersForDay
+    const newObj = { ...appointment, interview, interviewersForDay };
 
     return (
       <Appointment
