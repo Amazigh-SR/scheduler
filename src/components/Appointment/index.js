@@ -9,6 +9,7 @@ import Form from "./Form";
 import Confirm from "./Confirm";
 import Error from "components/Appointment/Error";
 
+// List of potential modes/states for one single appointment
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -80,7 +81,7 @@ const Appointment = function (props) {
     <article className="appointment">
       <Header time={props.time} />
 
-      {/* -------- List of conditions for each mode --------- */}
+      {/* -------- List of conditions for each mode/ different appointment components --------- */}
 
       {mode === ERROR_DELETE && (
         <Error
@@ -113,7 +114,7 @@ const Appointment = function (props) {
 
       {mode === CREATE && (
         <Form
-          interviewers={props.getInterviewersForDay}
+          interviewers={props.interviewersForDay}
           onSave={save}
           onCancel={() => back()}
           // bookInterview={props.bookInterview}
@@ -125,8 +126,8 @@ const Appointment = function (props) {
           interviewers={props.getInterviewersForDay}
           onSave={save}
           onCancel={() => back()}
-          student={props.interview.student} // Send this to form because student already exists
-          interviewer={props.interview.interviewer.id} //Send this to form because interviewer.id already exists
+          student={props.interview.student} // Send this to form to set default student name
+          interviewer={props.interview.interviewer.id} //Send this to form to set default interviewer (selected)
         />
       )}
 
