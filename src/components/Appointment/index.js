@@ -123,7 +123,7 @@ const Appointment = function (props) {
 
       {mode === EDIT && (
         <Form
-          interviewers={props.getInterviewersForDay}
+          interviewers={props.interviewersForDay}
           onSave={save}
           onCancel={() => back()}
           student={props.interview.student} // Send this to form to set default student name
