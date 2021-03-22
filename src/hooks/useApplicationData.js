@@ -31,9 +31,36 @@ const useApplicationData = function () {
     );
   }, []);
 
+  //Function that finds the number of spots available for a given day
+  const numSpotsRemaining = function (day, state) {
+    let count = 0;
+    const dayAppointArr = state.days.find((oneDay) => oneDay.name === day)
+      .appointments;
+
+    for (const id of dayAppointArr) {
+      if (!state.appointments[id].interview) {
+        count++;
+      }
+    }
+    return count;
+  };
+
+  //Function that creates a new days array with the updated # of spots available
+  const updateSpots = function (day, state, change) {
+    const remainingDaySpots = numSpotsRemaining(day, state);
+    const newDaysArr = state.days.map((dayObj) => {
+      if (dayObj.name === day) {
+        return { ...dayObj, spots: remainingDaySpots + change };
+      }
+      return dayObj;
+    });
+    return newDaysArr;
+  };
+
   //bookInterview Function
   const bookInterview = function (id, interview) {
-    console.log(id, interview);
+    const days = updateSpots(state.day, state, -1);
+    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -48,13 +75,14 @@ const useApplicationData = function () {
         interview,
       })
       .then(() => {
-        setState({ ...state, appointments });
-      }); //! include .catch
+        setState({ ...state, appointments, days });
+      });
   };
 
   //cancelInterview Function
   const cancelInterview = function (id) {
-    console.log(id);
+    const days = updateSpots(state.day, state, 1);
+    // console.log(id);
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -64,9 +92,10 @@ const useApplicationData = function () {
       [id]: appointment,
     };
     return axios.delete(`api/appointments/${id}`).then(() => {
-      setState({ ...state, appointments });
-    }); //! include .catch
+      setState({ ...state, appointments, days });
+    });
   };
+
   return { state, setDay, bookInterview, cancelInterview };
 };
 
