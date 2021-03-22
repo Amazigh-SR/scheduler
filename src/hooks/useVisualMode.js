@@ -25,10 +25,10 @@ const useVisualMode = function (initial) {
     if (history.length > 1) {
       let newHistory = [...history.slice(0, -1)];
       // console.log(newHistory);
-      console.log(history);
+      // console.log(history);
       // setHistory([...history.slice(0, -1)]);
       setHistory(newHistory);
-      console.log(history);
+      // console.log(history);
       setMode(newHistory[newHistory.length - 1]);
       // setMode(history[history.length - 1]);
     }
