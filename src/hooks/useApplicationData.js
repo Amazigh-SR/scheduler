@@ -20,7 +20,7 @@ const useApplicationData = function () {
 
     Promise.all([daysPromise, appointmentsPromise, interviewersPromise]).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
         setState((prev) => ({
           ...prev,
           days: response[0].data,
