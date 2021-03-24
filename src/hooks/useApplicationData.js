@@ -59,7 +59,11 @@ const useApplicationData = function () {
 
   //bookInterview Function
   const bookInterview = function (id, interview) {
-    const days = updateSpots(state.day, state, -1);
+    //Covers both cases - Create (-1 spot) vs Edit (+/- 0)
+    const days = state.appointments[id].interview
+      ? updateSpots(state.day, state, 0)
+      : updateSpots(state.day, state, -1);
+
     // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
