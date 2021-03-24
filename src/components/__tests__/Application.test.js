@@ -118,7 +118,7 @@ describe("Application", () => {
     const day = days.find((day) => {
       return queryByText(day, "Monday");
     });
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument(); //! Major bug here - Need to fix!!!! #spots changes when editing
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
     // debug();
   });
