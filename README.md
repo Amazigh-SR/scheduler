@@ -48,7 +48,7 @@ npm run storybook
 
 Booking an interview:
 
-![Create an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Create.png?raw=true)
+![Create an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Create_Appointment.png?raw=true)
 
 Editing an interview:
 
