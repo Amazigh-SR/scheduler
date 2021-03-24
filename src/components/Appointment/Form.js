@@ -26,10 +26,6 @@ const Form = function (props) {
     props.onCancel();
   };
 
-  const save = function (name, interviewer) {
-    props.onSave(name, interviewer);
-  };
-
   const onSubmit = (event) => event.preventDefault();
 
   return (
@@ -66,7 +62,6 @@ const Form = function (props) {
             confirm
             onClick={() => {
               validate();
-              // save(name, interviewer);
             }}
           >
             Save
