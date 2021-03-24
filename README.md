@@ -48,12 +48,12 @@ npm run storybook
 
 Booking an interview:
 
-[Create an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Create.png?raw=true)
+![Create an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Create.png?raw=true)
 
 Editing an interview:
 
-[Edit an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Edit.png?raw=true)
+![Edit an appointment](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Edit.png?raw=true)
 
 Handling server related errors:
 
-[Error Handling](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Error_Handling.png?raw=true)
+![Error Handling](https://github.com/Amazigh-SR/scheduler/blob/master/docs/Error_Handling.png?raw=true)
