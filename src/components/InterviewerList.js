@@ -1,7 +1,9 @@
 import React from "react";
 import "./InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; // Was used to test type checking - keeping here as a reference for the future
+
+// ---------------- InterviewerList Component -------------- //
 
 // Our InterviewerList takes in three props:
 // interviewers:array - an array of objects containing the information of each interviewer
@@ -33,6 +35,6 @@ const InterviewerList = function (props) {
 
 // InterviewerList.propTypes = {
 //   interviewers: PropTypes.array.isRequired,
-// };
+// }; --> Related to the type checking provided by PropTypes
 
 export default InterviewerList;

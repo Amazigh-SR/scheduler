@@ -1,10 +1,8 @@
 import React from "react";
-
 import "components/Button.scss";
-// import { action } from "@storybook/addon-actions";
 import classNames from "classnames";
-// const classNames = require("classnames");
 
+// ---------------- Types of Buttons for this app -------------- //
 // Base uses no props and is considered the default button
 // Confirm uses the confirm prop to apply the .button--confirm modifier class
 // Danger uses the danger prop to apply the .button--danger modifier class

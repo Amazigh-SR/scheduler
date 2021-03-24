@@ -1,3 +1,4 @@
+//Dummy data & Axios to test in a close and predictable environment
 const fixtures = {
   days: [
     {
@@ -55,6 +56,7 @@ const fixtures = {
 
 export default {
   defaults: { baseURL: "" },
+  //GET REQUEST
   get: jest.fn((url) => {
     if (url === "/api/days") {
       return Promise.resolve({
@@ -82,14 +84,14 @@ export default {
       });
     }
   }),
-
+  //PUT REQUEST
   put: jest.fn((url) => {
     return Promise.resolve({
       status: 204,
       statusText: "No Content",
     });
   }),
-
+  //DELETE REQUEST
   delete: jest.fn((url) => {
     return Promise.resolve({
       status: 204,

@@ -1,3 +1,4 @@
+// Tests reproducing the happy paths for creating, editing or deleting an appointment
 describe("Appointments", () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
@@ -6,6 +7,7 @@ describe("Appointments", () => {
   });
 
   it("should book an interview", () => {
+    //i.e. create an appointment
     cy.get("[alt='Add']").first().click();
     cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
     cy.get("[alt='Sylvia Palmer']").click();

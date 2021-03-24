@@ -12,7 +12,7 @@ const useApplicationData = function () {
 
   const setDay = (day) => setState({ ...state, day });
 
-  // API calls to fetch required data
+  // API calls to fetch the required data
   useEffect(() => {
     const daysPromise = axios.get("/api/days");
     const appointmentsPromise = axios.get("/api/appointments");
@@ -20,7 +20,6 @@ const useApplicationData = function () {
 
     Promise.all([daysPromise, appointmentsPromise, interviewersPromise]).then(
       (response) => {
-        // console.log(response);
         setState((prev) => ({
           ...prev,
           days: response[0].data,
@@ -64,7 +63,6 @@ const useApplicationData = function () {
       ? updateSpots(state.day, state, 0)
       : updateSpots(state.day, state, -1);
 
-    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -86,7 +84,6 @@ const useApplicationData = function () {
   //cancelInterview Function
   const cancelInterview = function (id) {
     const days = updateSpots(state.day, state, 1);
-    // console.log(id);
     const appointment = {
       ...state.appointments[id],
       interview: null,

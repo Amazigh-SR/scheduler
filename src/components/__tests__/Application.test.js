@@ -1,5 +1,6 @@
 import React from "react";
-
+import Application from "components/Application";
+import axios from "axios";
 import {
   render,
   cleanup,
@@ -16,10 +17,7 @@ import {
   getByDisplayValue,
 } from "@testing-library/react";
 
-import Application from "components/Application";
-
-import axios from "axios";
-
+// ---------------- Application Component Tests ------------ //
 afterEach(cleanup);
 
 describe("Application", () => {
@@ -31,6 +29,9 @@ describe("Application", () => {
       expect(getByText("Leopold Silvers")).toBeInTheDocument();
     });
   });
+
+  //----------------------------------------------------------//
+
   // ByLabelText, ByPlaceholderText, ByText, ByDisplayValue, ByAltText, ByTitle and ByRole --> List of useful getters
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     // 1. Render the Application.
@@ -60,6 +61,8 @@ describe("Application", () => {
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
+  //----------------------------------------------------------//
+
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
     const { container } = render(<Application />);
@@ -70,7 +73,6 @@ describe("Application", () => {
       container,
       "appointment"
     ).find((appoint) => queryByText(appoint, "Archie Cohen"));
-
     fireEvent.click(getByAltText(appointment, "Delete"));
     // 4. Check that the confirmation message is shown.
     expect(
@@ -89,6 +91,8 @@ describe("Application", () => {
     });
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
+
+  //----------------------------------------------------------//
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     // 1. Render the Application.
@@ -119,9 +123,9 @@ describe("Application", () => {
       return queryByText(day, "Monday");
     });
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-
-    // debug();
   });
+
+  //----------------------------------------------------------//
 
   it("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
@@ -147,6 +151,8 @@ describe("Application", () => {
       getByText(appointment, "Error, could not save the appointment")
     );
   });
+
+  //----------------------------------------------------------//
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();

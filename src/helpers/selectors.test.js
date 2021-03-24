@@ -4,6 +4,7 @@ import {
   getInterviewersForDay,
 } from "helpers/selectors";
 
+//Dummy data to complement the tests listed below
 const state = {
   days: [
     {

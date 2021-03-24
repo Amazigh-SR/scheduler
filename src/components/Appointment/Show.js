@@ -1,5 +1,7 @@
 import React from "react";
 
+// ---------------- Show Component -------------- //
+
 const Show = function (props) {
   return (
     <main className="appointment__card appointment__card--show">
@@ -24,7 +26,6 @@ const Show = function (props) {
           />
           <img
             onClick={() => {
-              // props.onDelete(props.id); // !Change to the confirmation mode/function
               props.confirmationScreen();
             }}
             className="appointment__actions-button"

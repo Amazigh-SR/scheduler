@@ -9,6 +9,8 @@ import {
 } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
+// ---------------- Application Component -------------- //
+
 export default function Application(props) {
   const {
     state,
@@ -21,10 +23,11 @@ export default function Application(props) {
   const interviewersForDay = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  //Generating the necessary data for each Appointment component
   const appointmentsRender = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const newObj = { ...appointment, interview, interviewersForDay };
-    // console.log(interviewersForDay);
+
     return (
       <Appointment
         key={appointment.id}

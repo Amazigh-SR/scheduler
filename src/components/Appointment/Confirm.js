@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "components/Button";
 
+// ---------------- Confirm Component -------------- //
+
 const Confirm = function (props) {
   return (
     <main className="appointment__card appointment__card--confirm">

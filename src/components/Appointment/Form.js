@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
+// ---------------- Form Component -------------- //
+
 const Form = function (props) {
   const [name, setName] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  //Function that validates that a name input is inserted
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
@@ -16,6 +19,7 @@ const Form = function (props) {
     props.onSave(name, interviewer);
   }
 
+  //Function that cancels the process of creating an appointment
   const reset = function () {
     setName("");
     setInterviewer(null);

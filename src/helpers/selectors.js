@@ -1,3 +1,4 @@
+//Dummy Data for the state of the application
 const state = {
   days: [
     {
@@ -54,7 +55,7 @@ const getAppointmentsForDay = function (state, day) {
   return appointmentsForDay;
 };
 
-// console.log(getAppointmentsForDay(state, "Monday"));
+// console.log(getAppointmentsForDay(state, "Monday")); --> Testing purposes
 
 exports.getAppointmentsForDay = getAppointmentsForDay;
 
@@ -72,7 +73,7 @@ const getInterview = function (state, interviewObj) {
   return { student, interviewer: interviewerObj };
 };
 
-// console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 }));
+// console.log(getInterview(state, { student: "Archie Cohen", interviewer: 2 })); --> Testing purposes
 
 exports.getInterview = getInterview;
 
